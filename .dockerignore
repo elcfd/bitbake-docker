@@ -1,0 +1,7 @@
+.git
+tests
+*.json
+*.md
+LICENSE
+*.yml
+*.sh
