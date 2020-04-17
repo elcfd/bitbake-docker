@@ -1,10 +1,16 @@
-dist: bionic
 sudo: false
+dist: bionic
+language: python
+virtualenv:
+  system_site_packages: true
+python:
+  - '3.8'
 addons:
   apt:
     packages:
-      - python3-pytest
       - jq
+install:
+  - pytest
 before_script:
   - |
     pushd /tmp
