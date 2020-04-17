@@ -74,7 +74,7 @@ def test_container_user(setup_testdir, run_command, images):
 
 @pytest.mark.parametrize("images", images, ids=test_names)
 def test_root_workdir(run_command, images):
-    assert run_command("docker container run --rm -v /opt:/workdir {}".format(images["image_name"]))[0] == 1
+    assert run_command("docker container run --rm -v /mnt:/workdir {}".format(images["image_name"]))[0] == 1
 
 
 @pytest.mark.parametrize("images", images, ids=test_names)
