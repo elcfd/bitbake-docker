@@ -1,8 +1,6 @@
-sudo: false
+os: linux
 dist: bionic
 language: python
-virtualenv:
-  system_site_packages: true
 python:
   - '3.8'
 addons:
