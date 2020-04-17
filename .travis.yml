@@ -8,7 +8,8 @@ addons:
     packages:
       - jq
 install:
-  - pytest
+  - pip install -U pip
+  - pip install pytest
 before_script:
   - |
     pushd /tmp
