@@ -16,7 +16,7 @@ tasks:
   tests:
     dir: tests
     cmds:
-      - pytest
+      - pytest -v
     silent: true
 
   release:
