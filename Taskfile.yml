@@ -1,0 +1,25 @@
+version: '2'
+
+tasks:
+  all:
+    cmds:
+      - task: build
+      - task: tests
+      - task: release
+    silent: true
+
+  build:
+    cmds:
+      - ./image_creator.sh build
+    silent: true
+
+  tests:
+    dir: tests
+    cmds:
+      - pytest
+    silent: true
+
+  release:
+    cmds:
+      - ./image_creator.sh release
+    silent: true
