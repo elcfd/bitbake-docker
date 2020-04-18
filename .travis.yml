@@ -27,4 +27,4 @@ jobs:
         - task tests
 # Only run release on release branch
 after_success:
-  - if [ "$TRAVIS_BRANCH" == "release" ]; then task release; fi || exit 1
+  - if [ "$TRAVIS_BRANCH" == "release" ]; then echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin; task release; fi || exit 1
