@@ -27,4 +27,4 @@ jobs:
         - task tests
 # Only run release on release branch
 after_success:
-  - if [ "$TRAVIS_BRANCH" == "release" ]; then task release; fi
+  - if [ "$TRAVIS_BRANCH" == "release" ]; then task release; fi || exit 1
