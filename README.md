@@ -37,7 +37,7 @@ Where **/workdir** is the location on the host PC that is going to be mounted in
 
 **NB.** The workdir passed into the container, can be any valid path on the host but must not be owned by the root user.
 
-If the previous command was successful shell will now be inside the container:
+If the previous command was successful the shell will now be inside the container:
 
 ```bash
 pokyuser@b4e96c8d231c:/workdir$

@@ -1,77 +1,80 @@
-FROM		ubuntu:18.04 AS build
+FROM        ubuntu:18.04 AS build
 
-ENV			dumbinitver			1.2.2
-ENV			dumbinitsha256		d4e2e10e39ad49c225e1579a4d770b83637399a0be48e29986f720fae44dafdf
+ENV         dumbinitver         1.2.2
+ENV         dumbinitsha256      d4e2e10e39ad49c225e1579a4d770b83637399a0be48e29986f720fae44dafdf
 
-WORKDIR		/build
+WORKDIR     /build
 
-RUN			apt update && \
-			apt install -y wget musl-tools make && \
-   			wget https://github.com/Yelp/dumb-init/archive/v$dumbinitver.tar.gz && \
-			echo "$dumbinitsha256 v$dumbinitver.tar.gz" > sha256sums && \
-			sha256sum -c sha256sums && \
-			tar xf v$dumbinitver.tar.gz && \
-			cd dumb-init-$dumbinitver && \
-			CC=musl-gcc make && \
-			cp dumb-init /
+RUN         apt update && \
+            apt install -y \
+                wget \
+                musl-tools \
+                make && \
+            wget https://github.com/Yelp/dumb-init/archive/v$dumbinitver.tar.gz && \
+            echo "$dumbinitsha256 v$dumbinitver.tar.gz" > sha256sums && \
+            sha256sum -c sha256sums && \
+            tar xf v$dumbinitver.tar.gz && \
+            cd dumb-init-$dumbinitver && \
+            CC=musl-gcc make && \
+            cp dumb-init /
 
-FROM		ubuntu:16.04
+FROM        ubuntu:16.04
 
-LABEL		maintainer	"elcfd <elcfd@whitetree.xyz>"
+LABEL       maintainer  "elcfd <elcfd@whitetree.xyz>"
 
-ENV			LANG				en_US.UTF-8
-ENV			DEBIAN_FRONTEND		noninteractive
+ENV         LANG                en_US.UTF-8
+ENV         DEBIAN_FRONTEND     noninteractive
 
-RUN			apt-get update && \
-   			apt-get install -y \
-				gawk \
-				wget \
-				git-core \
-				diffstat \
-				unzip \
-				texinfo \
-				gcc-multilib \
-				build-essential \
-				chrpath \
-				socat \
-				cpio \
-				python \
-				python3 \
-				python3-pip \
-				python3-pexpect \
-				xz-utils  \
-				debianutils \
-				iputils-ping \
-				python3-git \
-				python3-jinja2 \
-				libegl1-mesa \
-				libsdl1.2-dev \
-				pylint3 \
-				locales \
-				ncurses-dev \
-				tree \
-				sudo \
-				tmux \
-				vim && \
-				apt autoremove -y && \
-			/usr/sbin/locale-gen en_US.UTF-8
+RUN         apt-get update && \
+            apt-get install -y \
+                gawk \
+                wget \
+                git-core \
+                diffstat \
+                unzip \
+                texinfo \
+                gcc-multilib \
+                build-essential \
+                chrpath \
+                socat \
+                cpio \
+                python \
+                python3 \
+                python3-pip \
+                python3-pexpect \
+                xz-utils  \
+                debianutils \
+                iputils-ping \
+                python3-git \
+                python3-jinja2 \
+                libegl1-mesa \
+                libsdl1.2-dev \
+                pylint3 \
+                locales \
+                ncurses-dev \
+                tree \
+                sudo \
+                tmux \
+                vim && \
+                apt autoremove -y && \
+            /usr/sbin/locale-gen en_US.UTF-8
 
-COPY		--from=build /dumb-init /usr/bin/
+COPY        --from=build /dumb-init /usr/bin/
 
-COPY		scripts/poky-setup.py \
-		    scripts/poky-launch.sh \
-			/usr/bin/
+COPY        scripts/poky-setup.py \
+            scripts/poky-launch.sh \
+            /usr/bin/
 
-COPY		files/sudoers.usersetup /etc/
+COPY        files/sudoers.usersetup /etc/
 
-RUN 		groupadd -g 70 usersetup && \
-    		useradd -N -m -u 70 -g 70 usersetup && \
-    		chmod 755 /usr/bin/poky-setup.py \
-				/usr/bin/poky-launch.sh \
-				/usr/bin/dumb-init && \
-			echo "#include /etc/sudoers.usersetup" >> /etc/sudoers
+RUN         groupadd -g 70 usersetup && \
+            useradd -N -m -u 70 -g 70 usersetup && \
+            chmod 755 /usr/bin/poky-setup.py \
+                      /usr/bin/poky-launch.sh \
+                      /usr/bin/dumb-init && \
+            echo "#include /etc/sudoers.usersetup" >> /etc/sudoers
 
-USER		usersetup
+USER        usersetup
 
-ENTRYPOINT 	["/usr/bin/dumb-init", "--", "poky-setup.py"]
-CMD			["--workdir=/workdir"]
+ENTRYPOINT  ["/usr/bin/dumb-init", "--", "poky-setup.py"]
+CMD         ["--workdir=/workdir"]
