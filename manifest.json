@@ -1,21 +1,22 @@
 {
-	"docker_hub_username": "elcfd",
-	"image_name": "bitbake",
-	"images": [{
-			"name": "ubuntu-16.04",
-			"dockerfile": "Dockerfile.ubuntu-16.04"
-		},
-		{
-			"name": "ubuntu-18.04",
-			"dockerfile": "Dockerfile.ubuntu-18.04"
-		},
-		{
-			"name": "fedora-29",
-			"dockerfile": "Dockerfile.fedora-29"
-		},
-		{
-			"name": "fedora-30",
-			"dockerfile": "Dockerfile.fedora-30"
-		}
-	]
+    "docker_hub_username":"elcfd",
+    "image_name":"bitbake",
+    "images":[
+        {
+            "name":"ubuntu-16.04",
+            "dockerfile":"Dockerfile.ubuntu-16.04"
+        },
+        {
+            "name":"ubuntu-18.04",
+            "dockerfile":"Dockerfile.ubuntu-18.04"
+        },
+        {
+            "name":"fedora-29",
+            "dockerfile":"Dockerfile.fedora-29"
+        },
+        {
+            "name":"fedora-30",
+            "dockerfile":"Dockerfile.fedora-30"
+        }
+    ]
 }
