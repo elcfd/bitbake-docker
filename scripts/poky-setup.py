@@ -14,11 +14,9 @@ import pwd
 parser = argparse.ArgumentParser()
 
 parser.add_argument("--workdir", default="/workdir",
-                    # help="Directory to base the uid on")
-                    # TODO - improve wording
-                    help="Directory the the volume is mounted in the container")
+                    help="Directory of the mounted volume in the container")
 
-# All positional arguments are passed to args.cmd when it is ran
+# Swallow the rest of the args passed in
 parser.add_argument("args", default="", nargs=argparse.REMAINDER)
 
 args = parser.parse_args()
@@ -29,8 +27,7 @@ st = os.stat(args.workdir)
 uid, gid = st.st_uid, st.st_gid
 
 if uid == 0 or gid ==0:
-    # TODO - improve wording
-    print("The host workdir can\'t be owned by root")
+    print("The workdir passed in can not be owned by root")
     sys.exit(1)
 
 try:
@@ -48,7 +45,7 @@ except KeyError:
 # Let /opt be owned by pokyuser for sdk purposes
 subprocess.check_call("sudo chown -R pokyuser:pokyuser /opt".split())
 
-assert username == "pokyuser", "Sudoers file expects username to be pokyuser"
+assert username == "pokyuser", "sudoers file expects username to be pokyuser"
 
 cmd = "sudo -E -H -u {} ".format(username)
 cmd = cmd.split() + ["poky-launch.sh"] + [args.workdir] + args.args
