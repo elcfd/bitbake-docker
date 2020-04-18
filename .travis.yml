@@ -18,8 +18,13 @@ before_script:
     sha256sum -c --ignore-missing task_checksums.txt && \
     sudo dpkg -i task_linux_amd64.deb && \
     popd
+jobs:
+  include:
+    - stage: "CI"
+      name: "Build and unit test"
+      script:
+        - task build
+        - task tests
+# Only run release on release branch
 after_success:
-  - docker image ls
-script:
-  - task build
-  - task tests
+  - if [ "$TRAVIS_BRANCH" == "release" ]; then task release; fi
