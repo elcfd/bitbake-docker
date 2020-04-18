@@ -23,8 +23,12 @@ args = parser.parse_args()
 
 username ="pokyuser"
 
-st = os.stat(args.workdir)
-uid, gid = st.st_uid, st.st_gid
+if os.path.exists(args.workdir):
+    st = os.stat(args.workdir)
+    uid, gid = st.st_uid, st.st_gid
+else:
+    print("The container must be run with a volume mounted\n\n\t usage: docker container run -it --rm -v /workdir:/workdir <image_name>")
+    sys.exit(1)
 
 if uid == 0 or gid ==0:
     print("The workdir passed in can not be owned by root")
