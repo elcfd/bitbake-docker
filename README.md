@@ -84,7 +84,7 @@ task build
 The command to run the unit tests is:
 
 ```bash
-task build
+task tests
 ```
 
 **NB.** The unit test **test_user_2_id** requires **sudo** to run so will prompt for the **sudo** password.
