@@ -115,3 +115,13 @@ def test_user_2_id(setup_testdir, run_command, images):
 def test_opt_perms(setup_testdir, run_command, images):
     ret = run_command("docker container run --rm -v {}:/workdir {} /workdir/test_opt_perms.sh".format(setup_testdir, images["image_name"]))
     assert ret[0] == 0, "STDOUT: {} STDERR: {}".format(ret[1], ret[2])
+
+
+@pytest.mark.parametrize("images", images, ids=test_names)
+def test_incorrect_mount_path(run_command, images):
+    assert run_command("docker container run --rm -v /workdir:/bad {}".format(images["image_name"]))[0] == 1
+
+
+@pytest.mark.parametrize("images", images, ids=test_names)
+def test_mount_not_set(run_command, images):
+    assert run_command("docker container run --rm {}".format(images["image_name"]))[0] == 1
