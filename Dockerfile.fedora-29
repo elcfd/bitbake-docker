@@ -61,6 +61,7 @@ RUN         dnf update -y && \
                 python3-GitPython \
                 python3-jinja2 \
                 SDL-devel \
+                dos2unix \
                 ncurses-devel \
                 git-core \
                 tree \

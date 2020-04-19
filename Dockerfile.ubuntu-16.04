@@ -51,6 +51,7 @@ RUN         apt-get update && \
                 libsdl1.2-dev \
                 pylint3 \
                 locales \
+                dos2unix \
                 ncurses-dev \
                 tree \
                 sudo \
