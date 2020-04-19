@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-__version__ = '0.0.1'
+__version__ = '0.0.2'
 
 
 import argparse
@@ -27,7 +27,13 @@ if os.path.exists(args.workdir):
     st = os.stat(args.workdir)
     uid, gid = st.st_uid, st.st_gid
 else:
-    print("The container must be run with a volume mounted\n\n\t usage: docker container run -it --rm -v /workdir:/workdir <image_name>")
+    print("""
+        Error - either;
+            * the docker run command does not mount a volume
+            * the volume path specified in the docker run command does not match the path the container expects
+
+                Usage: docker container run -it --rm -v /workdir:/workdir <image_name>
+    """)
     sys.exit(1)
 
 if uid == 0 or gid ==0:
