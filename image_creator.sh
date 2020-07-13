@@ -3,10 +3,11 @@
 usage()
 {
     echo "Incorrect args - must specify build or release"
+    echo -e "\n   ./image_creator.sh <action>"
     exit 1
 }
 
-[[ $# -ne 2 ]] || usage
+[[ $# -eq 1 ]] || usage
 
 # args: 
     # image tag
