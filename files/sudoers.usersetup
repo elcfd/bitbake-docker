@@ -1,3 +1,3 @@
-usersetup ALL=NOPASSWD: /usr/sbin/groupadd, /usr/sbin/useradd, /bin/chown
-usersetup ALL = (pokyuser) NOPASSWD:SETENV: /usr/bin/poky-launch.sh
+usersetup ALL = NOPASSWD: /usr/sbin/groupadd, /usr/sbin/useradd, /bin/chown
+usersetup ALL = (bbuser) NOPASSWD:SETENV: /usr/bin/bitbake-launch.sh
 Defaults:usersetup !secure_path
