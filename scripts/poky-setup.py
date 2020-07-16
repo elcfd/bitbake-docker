@@ -53,7 +53,8 @@ except KeyError:
     subprocess.check_call(cmd.split(), stdout=sys.stdout, stderr=sys.stderr)
 
 # Let /opt be owned by pokyuser for sdk purposes
-subprocess.check_call("sudo chown -R pokyuser:pokyuser /opt".split())
+cmd = "sudo chown -R {}:{} /opt".format(username, username)
+subprocess.check_call(cmd.split(), stdout=sys.stdout, stderr=sys.stderr)
 
 assert username == "pokyuser", "sudoers file expects username to be pokyuser"
 
