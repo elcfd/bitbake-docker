@@ -11,6 +11,10 @@
             "dockerfile":"Dockerfile.ubuntu-18.04"
         },
         {
+            "name":"ubuntu-20.04",
+            "dockerfile":"Dockerfile.ubuntu-20.04"
+        },
+        {
             "name":"fedora-29",
             "dockerfile":"Dockerfile.fedora-29"
         },
