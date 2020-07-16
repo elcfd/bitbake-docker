@@ -31,6 +31,7 @@ RUN         apt update && \
                 libsdl1.2-dev \
                 pylint3 \
                 locales \
+                parted \
                 dos2unix \
                 ncurses-dev \
                 tree \
