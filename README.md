@@ -6,7 +6,7 @@ This project creates docker images which can be used as a containerized build en
 
 ## Features
 * Containerized build environment without user permission issues
-* The required [package dependencies](https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#required-packages-for-the-build-host) are installed for building the current Poky release [Zeus](https://git.yoctoproject.org/cgit/cgit.cgi/poky/log/?h=zeus)
+* The required [package dependencies](https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#required-packages-for-the-build-host) are installed for building with the current Poky release [Dunfell](https://git.yoctoproject.org/cgit/cgit.cgi/poky/log/?h=dunfell)
 * The **ncurses** dev package is installed allowing **menuconfig** to be used inside the container
 * [Dumb init](https://github.com/Yelp/dumb-init) is used to make sure that the build processes receive the correct signal to terminate
 
