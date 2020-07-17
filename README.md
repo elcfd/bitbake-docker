@@ -18,6 +18,7 @@ Choose one of the following:
 | ---- |
 | [elcfd/bitbake:ubuntu-16.04](https://hub.docker.com/r/elcfd/bitbake/tags)   |
 | [elcfd/bitbake:ubuntu-18.04](https://hub.docker.com/r/elcfd/bitbake/tags)   |
+| [elcfd/bitbake:ubuntu-20.04](https://hub.docker.com/r/elcfd/bitbake/tags)   |
 | [elcfd/bitbake:fedora-29](https://hub.docker.com/r/elcfd/bitbake/tags)      |
 | [elcfd/bitbake:fedora-30](https://hub.docker.com/r/elcfd/bitbake/tags)      |
 
