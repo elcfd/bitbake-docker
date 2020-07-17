@@ -79,20 +79,20 @@ RUN         dnf update -y && \
 
 COPY        --from=build /dumb-init /usr/bin/
 
-COPY        scripts/poky-setup.py \
-            scripts/poky-launch.sh \
+COPY        scripts/bitbake-setup.py \
+            scripts/bitbake-launch.sh \
             /usr/bin/
 
 COPY        files/sudoers.usersetup /etc/
 
 RUN         groupadd -g 70 usersetup && \
             useradd -N -m -u 70 -g 70 usersetup && \
-            chmod 755 /usr/bin/poky-setup.py \
-                      /usr/bin/poky-launch.sh \
+            chmod 755 /usr/bin/bitbake-setup.py \
+                      /usr/bin/bitbake-launch.sh \
                       /usr/bin/dumb-init && \
             echo "#include /etc/sudoers.usersetup" >> /etc/sudoers
 
 USER        usersetup
 
-ENTRYPOINT  ["/usr/bin/dumb-init", "--", "poky-setup.py"]
+ENTRYPOINT  ["/usr/bin/dumb-init", "--", "bitbake-setup.py"]
 CMD         ["--workdir=/workdir"]

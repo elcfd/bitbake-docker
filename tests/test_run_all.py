@@ -68,7 +68,7 @@ def setup_testdir(tmpdir_factory):
 
 @pytest.mark.parametrize("images", images, ids=test_names)
 def test_container_user(setup_testdir, run_command, images):
-    ret = run_command("docker container run --rm -v {}:/workdir {} /workdir/test_container_user.sh pokyuser".format(setup_testdir, images["image_name"]))
+    ret = run_command("docker container run --rm -v {}:/workdir {} /workdir/test_container_user.sh bbuser".format(setup_testdir, images["image_name"]))
     assert ret[0] == 0, "STDOUT: {} STDERR: {}".format(ret[1], ret[2])
 
 

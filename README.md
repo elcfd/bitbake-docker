@@ -40,7 +40,7 @@ Where **/workdir** is the location on the host PC that is going to be mounted in
 If the previous command was successful the shell will now be inside the container:
 
 ```bash
-pokyuser@b4e96c8d231c:/workdir$
+bbuser@b4e96c8d231c:/workdir$
 ```
 
 ### Workdir Options

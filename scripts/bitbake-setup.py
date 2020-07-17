@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-__version__ = '0.0.2'
+__version__ = '0.0.4'
 
 
 import argparse
@@ -21,7 +21,7 @@ parser.add_argument("args", default="", nargs=argparse.REMAINDER)
 
 args = parser.parse_args()
 
-username ="pokyuser"
+username ="bbuser"
 
 if os.path.exists(args.workdir):
     st = os.stat(args.workdir)
@@ -52,12 +52,12 @@ except KeyError:
     cmd = "sudo useradd -g {} -m -o -u {} {}".format(gid, uid, username)
     subprocess.check_call(cmd.split(), stdout=sys.stdout, stderr=sys.stderr)
 
-# Let /opt be owned by pokyuser for sdk purposes
+# Let /opt be owned by bbuser for sdk purposes
 cmd = "sudo chown -R {}:{} /opt".format(username, username)
 subprocess.check_call(cmd.split(), stdout=sys.stdout, stderr=sys.stderr)
 
-assert username == "pokyuser", "sudoers file expects username to be pokyuser"
+assert username == "bbuser", "sudoers file expects username to be bbuser"
 
 cmd = "sudo -E -H -u {} ".format(username)
-cmd = cmd.split() + ["poky-launch.sh"] + [args.workdir] + args.args
+cmd = cmd.split() + ["bitbake-launch.sh"] + [args.workdir] + args.args
 os.execvp(cmd[0], cmd)
