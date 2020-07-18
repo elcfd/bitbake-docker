@@ -4,4 +4,4 @@ tests
 *.md
 LICENSE
 *.yml
-*.sh
+image_creator.py

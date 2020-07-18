@@ -1,25 +1,27 @@
 version: '2'
 
+silent: true
+
+vars:
+  IMAGES:
+
 tasks:
-  all:
+  default:
     cmds:
       - task: build
       - task: tests
       - task: release
-    silent: true
 
   build:
     cmds:
-      - ./image_creator.sh build
-    silent: true
+      - python3 image_creator.py build {{.IMAGES}}
 
   tests:
-    dir: tests
     cmds:
-      - pytest -v
-    silent: true
+      # Temporary fix - should be a deps on build task
+      - python3 image_creator.py build {{.IMAGES}}
+      - python3 -m pytest -v --image_names {{.IMAGES}}
 
   release:
     cmds:
-      - ./image_creator.sh release
-    silent: true
+      - python3 image_creator.py release {{.IMAGES}}
