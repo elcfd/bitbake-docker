@@ -50,6 +50,9 @@ def pytest_generate_tests(metafunc):
         image_names = image_names.split(",")
     images = filter_images_to_test(image_names)
 
+    if not images:
+        sys.exit("No images were selected for testing")
+
     metafunc.parametrize("image_name", images, ids=images)
 
 
