@@ -1,7 +1,7 @@
 # Bitbake Docker
 
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/elcfd/bitbake-docker/bitbake%20docker%20ci/master)
-![Docker Pulls](https://img.shields.io/docker/pulls/elcfd/bitbake)
+[![Docker Pulls](https://img.shields.io/docker/pulls/elcfd/bitbake)](https://hub.docker.com/r/elcfd/bitbake)
 
 This project creates docker images which can be used as a containerized build environment for the [Yocto project](https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html).
 
