@@ -102,7 +102,7 @@ task release
 ### Specifying an Image
 
 For the three commands; build, test and release the default target is all. This means that all of the images specified in the [manifest](manifest.json) will be used. However,
-this can be overriden:
+this can be overridden for example:
 
 * To only build the `ubuntu-16.04` and `fedora-30` images:
 
