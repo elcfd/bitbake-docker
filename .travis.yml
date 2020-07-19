@@ -2,11 +2,7 @@ os: linux
 dist: bionic
 language: python
 python:
-  - '3.8'
-addons:
-  apt:
-    packages:
-      - jq
+  - "3.8.3"
 install:
   - pip install -U pip
   - pip install pytest
@@ -18,13 +14,18 @@ before_script:
     sha256sum -c --ignore-missing task_checksums.txt && \
     sudo dpkg -i task_linux_amd64.deb && \
     popd
-jobs:
-  include:
-    - stage: "CI"
-      name: "Build and unit test"
-      script:
-        - task build
-        - task tests
+
+env:
+  matrix:
+    - IMAGE_NAME=ubuntu-16.04
+    - IMAGE_NAME=ubuntu-18.04
+    - IMAGE_NAME=ubuntu-20.04
+    - IMAGE_NAME=fedora-29
+    - IMAGE_NAME=fedora-30
+
+script:
+  - task tests IMAGES=$IMAGE_NAME
+
 # Only run release on release branch
 after_success:
-  - if [ "$TRAVIS_BRANCH" == "release" ]; then echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin; task release; fi || exit 1
+  - if [ "$TRAVIS_BRANCH" == "release" ] || [ "$TRAVIS_BRANCH" == "test-release" ]; then echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin; task release IMAGES=$IMAGE_NAME; fi || exit 1

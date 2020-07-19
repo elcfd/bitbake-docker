@@ -1,6 +1,6 @@
 {
     "docker_hub_username":"elcfd",
-    "image_name":"bitbake",
+    "repository":"bitbake",
     "images":[
         {
             "name":"ubuntu-16.04",
