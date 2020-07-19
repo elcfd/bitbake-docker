@@ -1,0 +1,47 @@
+name: bitbake docker ci
+on:
+  push:
+  schedule:
+    - cron: '0 5 * * 5,6,0'
+
+env:
+  DOCKERHUB_USERNAME: elcfd
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        image_name:
+          - ubuntu-16.04
+          - ubuntu-18.04
+          - ubuntu-20.04
+          - fedora-29
+          - fedora-30
+      fail-fast: false
+    steps:
+      - name: install taskfile
+        run: |
+          pushd /tmp && \
+          wget https://github.com/go-task/task/releases/download/v2.8.0/task_linux_amd64.deb && \
+          wget https://github.com/go-task/task/releases/download/v2.8.0/task_checksums.txt && \
+          sha256sum -c --ignore-missing task_checksums.txt && \
+          sudo dpkg -i task_linux_amd64.deb && \
+          popd
+      - name: setup python3
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8.4
+      - name: install pip dependencies
+        run: |
+          python3 -m pip install -U pip
+          pip install pytest
+      - name: source code checkout
+        uses: actions/checkout@v2
+      - name: build and test
+        run: task test IMAGES=${{ matrix.image_name }}
+      - name: release
+        if: contains(github.ref, 'release')
+        run: |
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login --username "$DOCKERHUB_USERNAME" --password-stdin
+          task release IMAGES=${{ matrix.image_name }}

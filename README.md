@@ -1,6 +1,7 @@
 # Bitbake Docker
 
-[![Build Status](https://travis-ci.com/elcfd/bitbake-docker.svg?branch=master)](https://travis-ci.com/elcfd/bitbake-docker)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/elcfd/bitbake-docker/bitbake%20docker%20ci/migrate-to-actions)
+![Docker Pulls](https://img.shields.io/docker/pulls/elcfd/bitbake)
 
 This project creates docker images which can be used as a containerized build environment for the [Yocto project](https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html).
 
@@ -24,13 +25,13 @@ Choose one of the following:
 
 Pull the image from docker hub:
 
-```bash
+```
 docker image pull <image_name>
 ```
 
 To run the container:
 
-```bash
+```
 docker container run -it --rm -v /workdir:/workdir <image_name>
 ```
 
@@ -40,7 +41,7 @@ Where **/workdir** is the location on the host PC that is going to be mounted in
 
 If the previous command was successful the shell will now be inside the container:
 
-```bash
+```
 bbuser@b4e96c8d231c:/workdir$
 ```
 
@@ -48,7 +49,7 @@ bbuser@b4e96c8d231c:/workdir$
 
 To run the container with a different **workdir** inside the container:
 
-```bash
+```
 docker container run -it --rm -v /yocto-dev:/yocto-dev <image_name> --workdir=/yocto-dev
 ```
 
@@ -60,12 +61,10 @@ on the host and inside the container is seamless.
 
 The suggested workflow is to use the host PC for project version control and editing files with the container used as the build environment. Follow the instructions [here](https://www.yoctoproject.org/docs/current/brief-yoctoprojectqs/brief-yoctoprojectqs.html#brief-use-git-to-clone-poky) but run bitbake from inside the container.
 
-
 ## Development
 
 The following dependencies are required for development:
 * docker
-* jq
 * [task](https://taskfile.dev/#/installation?id=install-script)
 * python3
 * pytest
@@ -76,7 +75,7 @@ The build process is specified using the [manifest](manifest.json) so if require
 
 The command to build is:
 
-```bash
+```
 task build
 ```
 
@@ -84,8 +83,8 @@ task build
 
 The command to run the unit tests is:
 
-```bash
-task tests
+```
+task test
 ```
 
 **NB.** The unit test **test_user_2_id** requires **sudo** to run so will prompt for the **sudo** password.
@@ -94,8 +93,27 @@ task tests
 
 The command to push the built images is:
 
-```bash
+```
 task release
+```
+
+**NB.** Successful authentication with Dockerhub must have been completed before running this command.
+
+### Specifying an Image
+
+For the three commands; build, test and release the default target is all. This means that all of the images specified in the [manifest](manifest.json) will be used. However,
+this can be overriden:
+
+* To only build the `ubuntu-16.04` and `fedora-30` images:
+
+```
+task build IMAGES=ubuntu-16.04,fedora-30
+```
+
+* To build, test and release only the `fedora-29` image:
+
+```
+task IMAGES=fedora-29
 ```
 
 ## Credits

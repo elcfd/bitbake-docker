@@ -82,6 +82,9 @@ def main():
     manifest = read_manifest_file()
     cmds = generate_cmds(manifest, args.names, args.action)
 
+    if not cmds:
+        sys.exit("No images were selected to {}".format(args.action))
+
     for cmd in cmds:
         run_system_cmd(cmd)
 

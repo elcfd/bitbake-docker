@@ -3,25 +3,29 @@ version: '2'
 silent: true
 
 vars:
-  IMAGES:
+  IMAGES: all
 
 tasks:
   default:
+    summary: Build, test and release the docker images
     cmds:
       - task: build
-      - task: tests
+      - task: test
       - task: release
 
   build:
+    summary: Build the docker images
     cmds:
       - python3 image_creator.py build {{.IMAGES}}
 
-  tests:
+  test:
+    summary: Run the unit test suite
     cmds:
       # Temporary fix - should be a deps on build task
       - python3 image_creator.py build {{.IMAGES}}
       - python3 -m pytest -v --image_names {{.IMAGES}}
 
   release:
+    summary: Push the built images to Dockerhub
     cmds:
       - python3 image_creator.py release {{.IMAGES}}
