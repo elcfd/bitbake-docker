@@ -39,9 +39,9 @@ jobs:
       - name: source code checkout
         uses: actions/checkout@v2
       - name: build and test
-        run: task test IMAGES=${{ matrix.image_name }}
+        run: task IMAGES=${{ matrix.image_name }} test
       - name: release
         if: contains(github.ref, 'release')
         run: |
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login --username "$DOCKERHUB_USERNAME" --password-stdin
-          task release IMAGES=${{ matrix.image_name }}
+          task IMAGES=${{ matrix.image_name }} release

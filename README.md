@@ -107,7 +107,13 @@ this can be overridden for example:
 * To only build the `ubuntu-16.04` and `fedora-30` images:
 
 ```
-task build IMAGES=ubuntu-16.04,fedora-30
+task IMAGES=ubuntu-16.04,fedora-30 build
+```
+
+* To only test the `ubuntu-20.04` image:
+
+```
+task IMAGES=ubuntu-20.04 test
 ```
 
 * To build, test and release only the `fedora-29` image:
