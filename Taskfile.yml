@@ -20,9 +20,9 @@ tasks:
 
   test:
     summary: Run the unit test suite
+    deps:
+      - task: build
     cmds:
-      # Temporary fix - should be a deps on build task
-      - python3 image_creator.py build {{.IMAGES}}
       - python3 -m pytest -v --image_names {{.IMAGES}}
 
   release:
