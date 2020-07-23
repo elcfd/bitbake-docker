@@ -8,12 +8,13 @@ import sys
 
 
 TEST_FOLDER_PATH = os.path.dirname(os.path.realpath(__file__))
+MANIFEST = "manifest.json"
 
 
 def load_manifest_from_file():
 
     manifest_folder_path = os.path.split(TEST_FOLDER_PATH)[0]
-    manifest_file_path = os.path.join(manifest_folder_path, "manifest.json")
+    manifest_file_path = os.path.join(manifest_folder_path, MANIFEST)
     try:
         with open(manifest_file_path, "rb") as f:
             manifest = json.load(f)
