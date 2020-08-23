@@ -23,8 +23,8 @@ jobs:
       - name: install taskfile
         run: |
           pushd /tmp && \
-          wget https://github.com/go-task/task/releases/download/v2.8.0/task_linux_amd64.deb && \
-          wget https://github.com/go-task/task/releases/download/v2.8.0/task_checksums.txt && \
+          wget https://github.com/go-task/task/releases/download/v3.0.0/task_linux_amd64.deb && \
+          wget https://github.com/go-task/task/releases/download/v3.0.0/task_checksums.txt && \
           sha256sum -c --ignore-missing task_checksums.txt && \
           sudo dpkg -i task_linux_amd64.deb && \
           popd
