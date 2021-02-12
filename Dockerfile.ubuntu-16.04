@@ -1,7 +1,7 @@
 FROM        ubuntu:18.04 AS build
 
-ENV         dumbinitver         1.2.2
-ENV         dumbinitsha256      d4e2e10e39ad49c225e1579a4d770b83637399a0be48e29986f720fae44dafdf
+ENV         dumbinitver         1.2.5
+ENV         dumbinitsha256      3eda470d8a4a89123f4516d26877a727c0945006c8830b7e3bad717a5f6efc4e
 
 WORKDIR     /build
 
