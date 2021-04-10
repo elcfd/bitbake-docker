@@ -20,8 +20,6 @@ Choose one of the following:
 | [elcfd/bitbake:ubuntu-16.04](https://hub.docker.com/r/elcfd/bitbake/tags)   |
 | [elcfd/bitbake:ubuntu-18.04](https://hub.docker.com/r/elcfd/bitbake/tags)   |
 | [elcfd/bitbake:ubuntu-20.04](https://hub.docker.com/r/elcfd/bitbake/tags)   |
-| [elcfd/bitbake:fedora-29](https://hub.docker.com/r/elcfd/bitbake/tags)      |
-| [elcfd/bitbake:fedora-30](https://hub.docker.com/r/elcfd/bitbake/tags)      |
 
 Pull the image from docker hub:
 
@@ -104,10 +102,10 @@ task release
 For the three commands; build, test and release the default target is all. This means that all of the images specified in the [manifest](manifest.json) will be used. However,
 this can be overridden for example:
 
-* To only build the `ubuntu-16.04` and `fedora-30` images:
+* To only build the `ubuntu-16.04` and `ubuntu-18.04` images:
 
 ```
-task IMAGES=ubuntu-16.04,fedora-30 build
+task IMAGES=ubuntu-16.04,ubuntu-18.04 build
 ```
 
 * To only test the `ubuntu-20.04` image:
@@ -116,10 +114,10 @@ task IMAGES=ubuntu-16.04,fedora-30 build
 task IMAGES=ubuntu-20.04 test
 ```
 
-* To build, test and release only the `fedora-29` image:
+* To build, test and release only the `ubuntu-20.04` image:
 
 ```
-task IMAGES=fedora-29
+task IMAGES=ubuntu-20.04
 ```
 
 ## Credits

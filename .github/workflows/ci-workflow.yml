@@ -16,8 +16,6 @@ jobs:
           - ubuntu-16.04
           - ubuntu-18.04
           - ubuntu-20.04
-          - fedora-29
-          - fedora-30
       fail-fast: false
     steps:
       - name: install taskfile
