@@ -21,7 +21,7 @@ jobs:
       - name: install taskfile
         uses: arduino/setup-task@v1
       - name: setup python3
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: 3.9.0
       - name: install pip dependencies
