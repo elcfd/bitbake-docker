@@ -23,7 +23,8 @@ jobs:
       - name: setup python3
         uses: actions/setup-python@v4
         with:
-          python-version: 3.9.0
+          python-version: 3.9
+          check-latest: true
       - name: install pip dependencies
         run: |
           python3 -m pip install -U pip
