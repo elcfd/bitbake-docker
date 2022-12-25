@@ -20,6 +20,8 @@ jobs:
     steps:
       - name: install taskfile
         uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: setup python3
         uses: actions/setup-python@v4
         with:
