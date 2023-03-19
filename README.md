@@ -1,6 +1,6 @@
 # Bitbake Docker
 
-*** This project in no longer actively maintained ***
+*** This project is no longer actively maintained ***
 
 [![bitbake docker ci](https://github.com/elcfd/bitbake-docker/actions/workflows/ci-workflow.yml/badge.svg?branch=master)](https://github.com/elcfd/bitbake-docker/actions/workflows/ci-workflow.yml)
 [![Docker Pulls](https://img.shields.io/docker/pulls/elcfd/bitbake)](https://hub.docker.com/r/elcfd/bitbake)
